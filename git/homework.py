@@ -118,7 +118,7 @@ def some_loop_exercise() -> list:
     Use loop to create list that contain int values from 0 to 12 except 6 and 7
     """
     l = []
-    l_e=[6,7]
+    l_e = [6,7]
     for i in range(0, 13):
         if i in l_e:
             continue
