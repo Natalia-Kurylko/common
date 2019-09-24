@@ -30,7 +30,7 @@ def is_two_objects_has_same_type(first: Any, second: Any) -> bool:
 
 def is_two_objects_is_the_same_objects(first: Any, second: Any) -> bool:
     """
-    If @first and @second has same type should return True
+    If @first and @second has same object should return True
     In another case should return False
     """
     return first is second
@@ -117,12 +117,12 @@ def some_loop_exercise() -> list:
     """
     Use loop to create list that contain int values from 0 to 12 except 6 and 7
     """
-    list = []
+    l = []
     for i in range(0, 13):
-        if i == 6 or i == 7:
+        if i in range(6,8):
             continue
-        list.append(i)
-    return list
+        l.append(i)
+    return l
 
 
 def remove_from_list_all_negative_numbers(data: List[int]) -> list:
@@ -144,12 +144,12 @@ def alphabet() -> dict:
     Notes You could see an implementaion of this one in test, but create another one
     Examples:
         alphabet()
-        >>> {"a": 1, "b": 2 ...}
+        >>> {1:"a", 2: "b" ...}
     """
-    dict = {}
+    d = {}
     for i, j in enumerate(string.ascii_lowercase):
-        dict[i + 1] = j
-    return dict
+        d[i + 1] = j
+    return d
 
 
 def simple_sort(data: List[int]) -> List[int]:
