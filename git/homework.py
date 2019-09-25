@@ -141,7 +141,7 @@ def remove_from_list_all_negative_numbers(data: List[int]) -> list:
 
 def alphabet() -> dict:
     """
-    Create dict which keys is alphabetic characters. And values their number in alphabet
+    Create dict which keys is number in alphabet.And values their alphabetic characters
     Notes You could see an implementaion of this one in test, but create another one
     Examples:
         alphabet()
