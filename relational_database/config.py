@@ -4,13 +4,16 @@ DATABASE = {
     "database": "cursor_db",
     "user": "cursor",
     "password": "very_secret_password",
+    "host": 'localhost',
     "port": 5432
+
 }
 
 TEST_DATABASE = {
     "database": "test_cursor_db",
     "user": "test_cursor",
     "password": "test",
+    "host": 'localhost',
     "port": 5432
 }
 
