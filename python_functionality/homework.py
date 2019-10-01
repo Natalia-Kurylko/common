@@ -1,4 +1,7 @@
+from functools import reduce
 from typing import List, Dict, Union, Generator
+import numpy as np
+from operator import itemgetter
 
 # We will work with such dicts
 ST = Dict[str, Union[str, int]]
@@ -14,7 +17,11 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
         fix_names_start_letters([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}])
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
     """
-    pass
+    for i in data:
+        if 'name' in i:
+            t = i['name']
+            i['name'] = t.title()
+    return data
 
 
 def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
@@ -25,7 +32,8 @@ def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
        remove_dict_field([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 'age')
         >>> [{'name': 'Alex'}, {'name': 'denys'}]
     """
-    pass
+
+    return [{k: v for k, v in i.items() if k not in redundant_keys} for i in data]
 
 
 def task_3_find_item_via_value(data: DT, value) -> DT:
@@ -35,21 +43,29 @@ def task_3_find_item_via_value(data: DT, value) -> DT:
         find_item_via_value([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 26)
         >>> [{'name': 'Alex', 'age': 26}]
     """
-    pass
+    if data:
+        return [d for d in data for k, v in d.items() if v == value]
 
 
-def task_4_min_value_integers(data: List[int]) -> int:
+def task_4_min_value_integers(data: List[int]) -> [int]:
     """
     Find and return minimum value from list
     """
-    pass
+    if data:
+        return min(item for item in data)
+    else:
+        return None
 
 
 def task_5_min_value_strings(data: List[Union[str, int]]) -> str:
     """
-    Find the longest string
+    Find the shortest string
     """
-    pass
+    if data:
+        data = [str(d) for d in data]
+        data.sort(key=len)
+        shortest = data[0]
+        return shortest
 
 
 def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
@@ -58,21 +74,24 @@ def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
     Returns:
 
     """
-    pass
+    m = min(data, key=itemgetter('age'))
+    return m
 
 
-def task_7_max_value_list_of_lists(data: List[List[int]]) -> int:
+def task_7_max_value_list_of_lists(data: List[List[int]]) -> List[int]:
     """
     Find max value from list of lists
     """
-    pass
+    m = np.array(data)
+    c = max(m)
+    return max(c)
 
 
 def task_8_sum_of_ints(data: List[int]) -> int:
     """
     Find sum of all items in given list
     """
-    pass
+    return sum(i for i in data)
 
 
 def task_9_sum_characters_positions(text: str) -> int:
@@ -88,7 +107,8 @@ def task_9_sum_characters_positions(text: str) -> int:
         >>> 532
 
     """
-    pass
+    text = 'Generators are iterators, but you can only iterate over them once.'
+    return sum(ord(ch) for ch in text)
 
 
 def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
@@ -102,4 +122,12 @@ def task_10_generator_of_simple_numbers() -> Generator[int, None, None]:
         next(a)
         >>> 3
     """
-    pass
+    a = 2
+    while a <= 201:
+        for i in range(2, a):
+            if a % i == 0:
+                a += 1
+                break
+        else:
+            yield a
+            a += 1
