@@ -1,6 +1,5 @@
 from typing import List, Dict, Union, Generator
 import numpy as np
-from operator import itemgetter
 
 # We will work with such dicts
 ST = Dict[str, Union[str, int]]
@@ -16,7 +15,11 @@ def task_1_fix_names_start_letter(data: DT) -> DT:
         fix_names_start_letters([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}])
         >>> [{'name': 'Alex', 'age': 26}, {'name': 'Denys', 'age': 89}]
     """
-    return [dict({'name': item.get('name').capitalize(), 'age': item.get('age')}) for item in data if item.get('name') is not None]
+    for item in data:
+        if item.get('name'):
+            item.update(name=item.get('name').title())
+    return data
+
 
 def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
     """given_data
@@ -26,7 +29,6 @@ def task_2_remove_dict_fields(data: DT, redundant_keys: List[str]) -> DT:
        remove_dict_field([{'name': 'Alex', 'age': 26}, {'name': 'denys', 'age': 89}], 'age')
         >>> [{'name': 'Alex'}, {'name': 'denys'}]
     """
-
     return [{k: v for k, v in i.items() if k not in redundant_keys} for i in data]
 
 
@@ -47,8 +49,6 @@ def task_4_min_value_integers(data: List[int]) -> [int]:
     """
     if data:
         return min(item for item in data)
-    else:
-        return None
 
 
 def task_5_min_value_strings(data: List[Union[str, int]]) -> str:
@@ -68,8 +68,7 @@ def task_6_min_value_list_of_dicts(data: DT, key: str) -> ST:
     Returns:
 
     """
-    m = min(data, key=itemgetter('age'))
-    return m
+    return min([d for d in data if d.get(key)], key=lambda x: x[key])
 
 
 def task_7_max_value_list_of_lists(data: List[List[int]]) -> List[int]:
