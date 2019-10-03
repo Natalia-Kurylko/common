@@ -1,4 +1,3 @@
-from functools import reduce
 from typing import List, Dict, Union, Generator
 import numpy as np
 from operator import itemgetter
