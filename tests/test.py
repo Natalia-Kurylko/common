@@ -10,16 +10,13 @@ class TestHomework(unittest.TestCase):
     def tearDown(self):
         pass
 
-
     def test_get_rectangle_perimeter(self):
         result = self.rec.get_rectangle_perimeter()
         self.assertEqual(result, 16)
 
-
     def test_get_rectangle_square(self):
         ex_result = self.rec.get_rectangle_square()
         self.assertEqual(ex_result, 16)
-
 
     def test_get_sum_of_corners(self, number_of_corners=5):
         number_of_corners=4
@@ -28,17 +25,14 @@ class TestHomework(unittest.TestCase):
             self.rec.get_sum_of_corners(number_of_corners_wrong)
         self.assertEqual(self.rec.get_sum_of_corners(number_of_corners), 360)
 
-
     def test_get_rectangle_diagonal(self):
         ex_result = self.rec.get_rectangle_diagonal()
         self.assertEqual(round(ex_result, 2), 5.66)
-
 
     def test_get_radius_of_circumscribed_circle(self):
         #ex_diagonal = round(self.rec.get_rectangle_diagonal(), 2)
         ex_radius = round(self.rec.get_radius_of_circumscribed_circle(), 2)
         self.assertEqual(ex_radius, 2.83)
-
 
     def test_get_radius_of_inscribed_circle(self):
         with self.assertRaises(ValueError):
