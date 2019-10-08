@@ -95,4 +95,3 @@ class TestHomework(unittest.TestCase):
         self.assertFalse(homework.greater(2,1))
         self.assertEqual(homework.greater(1,1),'-1')
         
-        
