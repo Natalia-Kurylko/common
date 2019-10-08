@@ -30,15 +30,13 @@ class TestHomework(unittest.TestCase):
         self.assertEqual(round(ex_result, 2), 5.66)
 
     def test_get_radius_of_circumscribed_circle(self):
-        #ex_diagonal = round(self.rec.get_rectangle_diagonal(), 2)
         ex_radius = round(self.rec.get_radius_of_circumscribed_circle(), 2)
         self.assertEqual(ex_radius, 2.83)
 
     def test_get_radius_of_inscribed_circle(self):
         with self.assertRaises(ValueError):
             self.rec_wrong.get_radius_of_inscribed_circle()
-        #ex_diagonal = round(self.rec.get_rectangle_diagonal(), 2)
-        #ex_radius = round(self.rec.get_radius_of_inscribed_circle(), 2)
+        self.assertEqual(self.rec.get_radius_of_inscribed_circle(),2)
 
 
 if __name__ == '__main__':
