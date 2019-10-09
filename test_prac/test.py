@@ -41,8 +41,7 @@ class TestHomework(unittest.TestCase):
         self.assertEqual(homework.find_missing_number(num_list), 5)
 
     def test_count_of_elements(self):
-        l = [1, 2, 3, (1, 2), 3]
-        self.assertEqual(homework.count_of_elements(l), 3)
+        self.assertEqual(homework.count_of_elements(), 3)
 
     def test_some_param(self):
         ex_result = "sredoC dna dlroW olleH"
