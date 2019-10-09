@@ -118,7 +118,7 @@ def find_missing_number(num_list):
     return (list(num_list ^ set(original_list)))
 
 
-def count_of_elements(l):
+def count_of_elements():
     """
     Write a Python program to count the elements in a list until an element is a tuple.
     Sample Test Cases:
