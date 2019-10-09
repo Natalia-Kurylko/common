@@ -150,7 +150,7 @@ def num_parameter(num):
     hours and minutes the parameter converts to (ie. if num = 63 then the output should be 1:3).
     Separate the number of hours and minutes with a colon.
     """
-    hours = str(num/60)
+    hours = str(int(num/60))
     minutes = str(num % 60)
     return (hours + ':' + minutes)
 
@@ -177,7 +177,7 @@ def largest_word(mystring):
     return longest
 
 
-def asks_the_users(w):
+def asks_the_users():
     """
     Write a program (using functions!) that asks the user
     for a long string containing multiple words. Print back
@@ -186,7 +186,8 @@ def asks_the_users(w):
     Input: My name is Michele
     Outout: Michele is name My
     """
-    return ' '.join(w.split()[::-1])
+    s = input("Some string: ")
+    return ' '.join(s.split()[::-1])
 
 def fibonacci_number(x):
     """
