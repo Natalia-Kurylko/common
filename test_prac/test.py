@@ -1,4 +1,5 @@
 import unittest
+from unittest.mock import patch
 import homework
 
 
@@ -12,7 +13,7 @@ class TestHomework(unittest.TestCase):
         ex_result = 5
         self.assertEqual(homework.number_of_times(given_string), ex_result)
 
-    def number_is_power(self):
+    def test_number_is_power(self):
         self.assertTrue(homework.number_is_power(9))
         self.assertTrue(homework.number_is_power(3))
         self.assertFalse(homework.number_is_power(122))
@@ -48,23 +49,20 @@ class TestHomework(unittest.TestCase):
         self.assertEqual(homework.some_param(), ex_result)
 
     def test_num_parameter(self):
-        num = 63
-        self.assertEqual(homework.num_parameter(num), '1:3')
+        self.assertEqual(homework.num_parameter(63), '1:3')
 
     def test_largest_word(self):
         mystring = 'fun&!! time'
         ex_result = 'time'
         self.assertEqual(homework.largest_word(mystring), ex_result)
 
-    def test_asks_the_users(self):
-        w = 'My name is Michele'
-        ex_result = 'Michele is name My'
-        self.assertEqual(homework.asks_the_users(w), ex_result)
+    @patch("test_prac.homework.asks_the_users", return_value="Michele is name My")
+    def test_asks_the_users(self,asks_the_users):
+        self.assertEqual(asks_the_users(), 'Michele is name My')
 
-    def test_fibonacci_number(self):
-        x = 12
-        ex_result = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144]  # result for 12
-        self.assertEqual(homework.fibonacci_number(x), ex_result)
+    @patch("test_prac.homework.fibonacci_number", return_value = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144])
+    def test_fibonacci_number(self,fibonacci_number):
+        self.assertEqual(fibonacci_number(), [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144])
 
     def test_some_saved_list(self):
         a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
@@ -94,3 +92,6 @@ class TestHomework(unittest.TestCase):
         self.assertFalse(homework.greater(2,1))
         self.assertEqual(homework.greater(1,1),'-1')
         
+
+if __name__ == "__main__":
+    unittest.main()
