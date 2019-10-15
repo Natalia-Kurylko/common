@@ -2,26 +2,26 @@ class Cat:
     """
     Write Class Cat which will receive age from user
     * Add to class average_speed variable which will get it's values
-      from private method _set_average_speed()
+      from private method _set_average_speed()                                   #done
 
-    * Add to class saturation_level variable with value 50
+    * Add to class saturation_level variable with value 50                       #done
 
-    * Implement private methods _increase_saturation_level and _reduce_saturation_level
+    * Implement private methods _increase_saturation_level and _reduce_saturation_level   done
       that will receive value and add/subtract from saturation_level this value
       if saturation_level is less than 0, return 0
       if saturation_level is grosser than 100, return 100
 
-    * Implement method eat which will receive from user product value
+    * Implement method eat which will receive from user product value             # done
       if product eq fodder use _increase_saturation_level with value eq 10
       if product eq apple use _increase_saturation_level with value eq 5
       if product eq milk use _increase_saturation_level with value eq 2
 
-    * Implement private method _set_average_speed
+    * Implement private method _set_average_speed                                 #donee
       if age less or eq 7 return 12
       if age between 7(not including) and 10(including) return 9
       if age grosser than 10(not including) return 6
 
-    * Implement method run it receives hours value
+    * Implement method run it receives hours value                                  done
       Calculate run km per hours remember that you have average_speed value
       Than if your cat run more or eq than 25 _reduce_saturation_level with value 2
       if it runs between 25(not including) and 50(including) than _reduce_saturation_level with value 5
@@ -29,41 +29,76 @@ class Cat:
       if it runs between 100(not including) and 200(including) than _reduce_saturation_level with value 25
       if it runs more than 200(not including) than _reduce_saturation_level with value 50
 
-      return text like this: f"Your cat ran {ran_km} kilometers"
+      return text like this: f"Your cat ran {ran_km} kilometers"  done
 
     * Implement get_saturation_level and return saturation_level
-      if saturation_level eq 0 return text like this: "Your cat is died :("
+      if saturation_level eq 0 return text like this: "Your cat is dead :("
 
     * Implement get_average_speed and return average_speed
 
     """
 
     def __init__(self, age):
-        pass
+        self.age = age
+        self.average_speed = self._set_average_speed()
+        self.saturation_level = 50
 
     def eat(self, product):
-        pass
+        if product == 'fodder':
+            self._increase_saturation_level(10)
+        elif product == 'apple':
+            self._increase_saturation_level(5)
+        elif product == 'milk':
+            self._increase_saturation_level(2)
 
     def _reduce_saturation_level(self, value):
-        pass
+        self.value = value
+        self.saturation_level -= value
+        if self.saturation_level < 0:
+            return 0
+        elif self.saturation_level > 100:
+            return 100
 
     def _increase_saturation_level(self, value):
-        pass
+        self.value = value
+        self.saturation_level += value
+        if self.saturation_level < 0:
+            return 0
+        elif self.saturation_level > 100:
+            return 100
 
     def _set_average_speed(self):
-        pass
+        if self.age <= 7:
+            return 12
+        elif 7 < self.age <= 10:
+            return 9
+        elif self.age > 10:
+            return 6
 
     def run(self, hours):
-        pass
+        km_per_hours = self._set_average_speed() * hours
+        if km_per_hours <= 25:
+            self._reduce_saturation_level(2)
+        elif 25 < km_per_hours <= 50:
+            self._reduce_saturation_level(5)
+        elif 50 < km_per_hours <= 100:
+            self._reduce_saturation_level(15)
+        elif 100 < km_per_hours <= 200:
+            self._reduce_saturation_level(25)
+        elif km_per_hours > 200:
+            self._reduce_saturation_level(50)
+        return f"Your cat ran {km_per_hours} kilometers"
 
     def get_saturation_level(self):
-        pass
+        if self.saturation_level == 0:
+            return "Your cat is dead :("
+        return self.saturation_level
 
     def get_average_speed(self):
-        pass
+        return self.average_speed
 
 
-class Cheetah:
+class Cheetah(Cat):
     """
     * Inherit from class Cat
 
@@ -77,6 +112,20 @@ class Cheetah:
       if age grosser 15(not including) return 40
 
     """
+
+    def eat(self, product):
+        if product == 'gazelle':
+            super()._increase_saturation_level(30)
+        if product == 'rabbit':
+            super()._increase_saturation_level(15)
+
+    def _set_average_speed(self):
+        if self.age <= 5:
+            return 90
+        elif 5 < self.age <= 15:
+            return 90
+        elif self.age > 15:
+            return 40
 
 
 class Wall:
@@ -95,13 +144,16 @@ class Wall:
     """
 
     def __init__(self, width, height):
-        pass
+        self.width = width
+        self.height = height
 
     def wall_square(self):
-        pass
+        return self.width * self.height
 
     def number_of_rolls_of_wallpaper(self, roll_width_m, roll_length_m):
-        pass
+        count_of_lines_in_roll = round(roll_length_m / self.height)
+        count_of_lines = round(self.width / roll_width_m)
+        return round(count_of_lines / count_of_lines_in_roll)
 
 
 class Roof:
@@ -115,11 +167,18 @@ class Roof:
 
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, width, height, roof_type):
+        self.width = width
+        self.height = height
+        self.roof_type = roof_type
 
     def roof_square(self):
-        pass
+        if self.roof_type == 'gable':
+            return (self.width * self.height) * 2
+        elif self.roof_type == 'single-pitch':
+            return self.width * self.height
+        else:
+            raise ValueError('Sorry there is only two types of roofs')
 
 
 class Window:
@@ -130,11 +189,12 @@ class Window:
 
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
 
     def window_square(self):
-        pass
+        return self.width * self.height
 
 
 class Door:
@@ -155,20 +215,28 @@ class Door:
 
     """
 
-    def __init__(self):
-        pass
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+        self.wood_price = 10
+        self.metal_price = 3
 
     def door_square(self):
-        pass
+        return self.width * self.height
 
-    def door_price(self):
-        pass
+    def door_price(self, material_value):
+        if material_value == 'wood':
+            return self.door_square() * self.wood_price
+        elif material_value == 'metal':
+            return self.door_square() * self.metal_price
+        else:
+            raise ValueError("Sorry we don't have such material")
 
-    def update_wood_price(self):
-        pass
+    def update_wood_price(self, new_price):
+        self.wood_price = new_price
 
-    def update_metal_price(self):
-        pass
+    def update_metal_price(self, new_price):
+        self.metal_price = new_price
 
 
 class House:
@@ -230,49 +298,78 @@ class House:
     """
 
     def __init__(self):
-        pass
+        self.__walls = []
+        self.__windows = []
+        self.__roof = None
+        self.__door = None
 
-    def create_wall(self):
-        pass
+    def create_wall(self, width, height):
+        if width == 0 or height == 0:
+            raise ValueError("Value must be not 0")
+        else:
+            if len(self.__walls) < 4:
+                self.__walls.append(Wall(width, height))
+            else:
+                raise ValueError("Our house can not have more than 4 walls")
 
-    def create_roof(self):
-        pass
+    def create_roof(self, width, height, roof_type):
+        if width == 0 or height == 0:
+            raise ValueError('Value must be not 0')
+        else:
+            if self.__roof is None:
+                self.__roof = Roof(width, height, roof_type)
+            else:
+                raise ValueError("The house can not have two roofs")
 
-    def create_window(self):
-        pass
+    def create_window(self, width, height):
+        if width == 0 or height == 0:
+            raise ValueError('Value must be not 0')
+        else:
+            self.__windows = Window(width, height)
 
-    def create_door(self):
-        pass
+    def create_door(self, width, height):
+        if width == 0 or height == 0:
+            raise ValueError('Value must be not 0')
+        else:
+            if self.__door is None:
+                self.__door = Door(width, height)
+            else:
+                raise ValueError("The house can not have two roofs")
 
     def get_count_of_walls(self):
-        pass
+        return len(self.__walls)
 
     def get_count_of_windows(self):
-        pass
+        return len(self.__windows)
 
-    def get_door_price(self):
-        pass
+    def get_door_price(self, material_value):
+        return Door.door_price(self.__door, material_value)
 
-    def update_wood_price(self):
-        pass
+    def update_wood_price(self, new_price):
+        return Door.update_wood_price(self.__door, new_price)
 
-    def update_metal_price(self):
-        pass
+    def update_metal_price(self, new_price):
+        return Door.update_wood_price(self.__door, new_price)
 
     def get_roof_square(self):
-        pass
+        return Roof.roof_square(self.__roof)
 
     def get_walls_square(self):
-        pass
+        return Wall.wall_square(sum(self.__walls))
 
     def get_windows_square(self):
-        pass
+        return Window.window_square(sum(self.__windows))
 
     def get_door_square(self):
-        pass
+        return Door.door_square(self.__door)
 
-    def get_number_of_rolls_of_wallpapers(self):
-        pass
+    def get_number_of_rolls_of_wallpapers(self, roll_width_m, roll_length_m):
+        if roll_length_m == 0 or roll_width_m == 0:
+            raise ValueError("Sorry length must be not 0")
+        number_of_rolls = 0
+        for wall in self.__walls:
+            number_of_rolls += Wall.number_of_rolls_of_wallpaper(wall, roll_width_m, roll_length_m)
+        return number_of_rolls
 
     def get_room_square(self):
-        pass
+        return self.get_walls_square() - self.get_windows_square() - self.get_door_square()
