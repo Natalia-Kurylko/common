@@ -100,11 +100,8 @@ def find_the_number(l):
         Input : [5, 3, 4, 3, 4]
         Output : 5
     """
-    l = [5, 3, 4, 3, 4]
-    result = 0
-    for i in l:
-        result ^= i
-    return result
+    return int(''.join([str(i) for i in l if l.count(i) == 1]))
+
 
 def find_missing_number(num_list):
     """
@@ -112,10 +109,7 @@ def find_missing_number(num_list):
     Input : [1,2,3,4,6,7,8]
     Output : 5
     """
-    num_list = [1,2,3,4,6,7,8]
-    original_list = [x for x in range(num_list[0], num_list[-1] + 1)]
-    num_list = set(num_list)
-    return (list(num_list ^ set(original_list)))
+    return int(''.join([str(i) for i in [j for j in range(1, len(num_list) + 2)] if i not in num_list]))
 
 
 def count_of_elements():
