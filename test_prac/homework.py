@@ -173,7 +173,7 @@ def largest_word(mystring):
         if len(i) > len(longest):
             longest = i
         elif len(i) == len(longest):
-         continue
+            continue
     return longest
 
 
