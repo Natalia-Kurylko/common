@@ -37,11 +37,11 @@ class Cat:
     * Implement get_average_speed and return average_speed
 
     """
-
+    saturation_level = 50
+    
     def __init__(self, age):
         self.age = age
         self.average_speed = self._set_average_speed()
-        self.saturation_level = 50
 
     def eat(self, product):
         if product == 'fodder':
