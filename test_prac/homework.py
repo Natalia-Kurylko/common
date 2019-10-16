@@ -1,7 +1,7 @@
 import string
 
 
-def two_list():
+def two_list(a,b):
     """
     Take two lists, say for example these two:
     a =[1,1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
@@ -11,8 +11,6 @@ def two_list():
     between the lists (without duplicates).
 
     """
-    a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
-    b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
     return list(set(a).intersection(b))
 
 
@@ -73,7 +71,7 @@ def all_zero(l):
     return l
 
 
-def check_a_sequence_numbers():
+def check_a_sequence_numbers(l):
     """
     Write a Python program to check a sequence of numbers is an arithmetic progression or not.
     Input : [5, 7, 9, 11]
@@ -83,7 +81,6 @@ def check_a_sequence_numbers():
     For example, the sequence 5, 7, 9, 11, 13, 15 ... is an arithmetic progression with common difference of 2.
 
     """
-    l = [5, 7, 9, 11]
     if len(l) < 2:
         return False
     diff = l[1] - l[0]
@@ -112,14 +109,13 @@ def find_missing_number(num_list):
     return int(''.join([str(i) for i in [j for j in range(1, len(num_list) + 2)] if i not in num_list]))
 
 
-def count_of_elements():
+def count_of_elements(l):
     """
     Write a Python program to count the elements in a list until an element is a tuple.
     Sample Test Cases:
     Input: [1,2,3,(1,2),3]
     Output: 3
     """
-    l = [1,2,3,(1,2),3]
     number = 0
     for i in l:
         if isinstance(i, tuple):
@@ -128,14 +124,13 @@ def count_of_elements():
     return number
 
 
-def some_param():
+def some_param(some_s_rev):
     """
     Write a program that will take the str parameter being passed and return
     the string in reversed order. For example: if the input string is "Hello World and Coders"
     then your program should return the string sredoC dna dlroW olleH.
     """
-    some_s_rev = "Hello World and Coders"[::-1]
-    return some_s_rev
+    return some_s_rev[::-1]
 
 
 def num_parameter(num):
@@ -216,7 +211,6 @@ def some_saved_list(a):
     Write one line of Python that takes this list a and makes a new list that has only
     the even elements of this list in it.
     """
-    a = [1, 4, 9, 16, 25, 36, 49, 64, 81, 100]
     b = [i for i in a if i % 2 == 0]
     return b
 
