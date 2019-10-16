@@ -5,8 +5,10 @@ import homework
 
 class TestHomework(unittest.TestCase):
     def test_two_list(self):
+        a = [1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89]
+        b = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
         ex_result = [1, 2, 3, 5, 8, 13]
-        self.assertEqual(homework.two_list(), ex_result)
+        self.assertEqual(homework.two_list(a,b), ex_result)
 
     def test_number_of_times(self):
         given_string = 'I am a good developer. I am also a writer'
@@ -31,7 +33,7 @@ class TestHomework(unittest.TestCase):
     def test_check_a_sequence_numbers(self):
         l = [5, 7, 9, 11]
         diff = 2
-        self.assertTrue(homework.check_a_sequence_numbers(), diff)
+        self.assertTrue(homework.check_a_sequence_numbers(l), diff)
 
     def test_find_the_number(self):
         l = [5, 3, 4, 3, 4]
@@ -42,11 +44,13 @@ class TestHomework(unittest.TestCase):
         self.assertEqual(homework.find_missing_number(num_list), 5)
 
     def test_count_of_elements(self):
-        self.assertEqual(homework.count_of_elements(), 3)
+        l = [1, 2, 3, (1, 2), 3]
+        self.assertEqual(homework.count_of_elements(l), 3)
 
     def test_some_param(self):
+        some_s_rev = "Hello World and Coders"
         ex_result = "sredoC dna dlroW olleH"
-        self.assertEqual(homework.some_param(), ex_result)
+        self.assertEqual(homework.some_param(some_s_rev), ex_result)
 
     def test_num_parameter(self):
         self.assertEqual(homework.num_parameter(63), '1:3')
