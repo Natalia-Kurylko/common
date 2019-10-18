@@ -1,3 +1,4 @@
+import math
 class Cat:
     """
     Write Class Cat which will receive age from user
@@ -108,7 +109,7 @@ class Cheetah(Cat):
 
     * Redefine method _set_average_speed
       if age less or eq 5 return 90
-      if age between 5 and 15(including) return 90
+      if age between 5 and 15(including) return 75
       if age grosser 15(not including) return 40
 
     """
@@ -123,7 +124,7 @@ class Cheetah(Cat):
         if self.age <= 5:
             return 90
         elif 5 < self.age <= 15:
-            return 90
+            return 75
         elif self.age > 15:
             return 40
 
@@ -151,9 +152,9 @@ class Wall:
         return self.width * self.height
 
     def number_of_rolls_of_wallpaper(self, roll_width_m, roll_length_m):
-        count_of_lines_in_roll = round(roll_length_m / self.height)
-        count_of_lines = round(self.width / roll_width_m)
-        return round(count_of_lines / count_of_lines_in_roll)
+        count_of_lines_in_roll = math.floor(roll_length_m / self.height)
+        count_of_lines = math.floor(self.width / roll_width_m)
+        return math.floor(count_of_lines / count_of_lines_in_roll)
 
 
 class Roof:
@@ -325,7 +326,8 @@ class House:
         if width == 0 or height == 0:
             raise ValueError('Value must be not 0')
         else:
-            self.__windows = Window(width, height)
+            w = Window(width,height)
+            self.__windows.append(w)
 
     def create_door(self, width, height):
         if width == 0 or height == 0:
@@ -343,25 +345,25 @@ class House:
         return len(self.__windows)
 
     def get_door_price(self, material_value):
-        return Door.door_price(self.__door, material_value)
-
+        return self.__door.door_price(material_value)
+    
     def update_wood_price(self, new_price):
-        return Door.update_wood_price(self.__door, new_price)
+        return self.__door.update_wood_price(new_price)
 
     def update_metal_price(self, new_price):
-        return Door.update_wood_price(self.__door, new_price)
+        return self.__door.update_wood_price(new_price)
 
     def get_roof_square(self):
-        return Roof.roof_square(self.__roof)
+        return self.__roof.roof_square()
 
     def get_walls_square(self):
-        return Wall.wall_square(sum(self.__walls))
+        return sum(w.wall_square() for w in self.__walls)
 
     def get_windows_square(self):
-        return Window.window_square(sum(self.__windows))
+        return sum(w.window_square() for w in self.__windows)
 
     def get_door_square(self):
-        return Door.door_square(self.__door)
+        return self.__door.door_square()
 
     def get_number_of_rolls_of_wallpapers(self, roll_width_m, roll_length_m):
         if roll_length_m == 0 or roll_width_m == 0:
