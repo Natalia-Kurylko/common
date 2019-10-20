@@ -45,28 +45,23 @@ class Cat:
         self.average_speed = self._set_average_speed()
 
     def eat(self, product):
-        if product == 'fodder':
-            self._increase_saturation_level(10)
-        elif product == 'apple':
-            self._increase_saturation_level(5)
-        elif product == 'milk':
-            self._increase_saturation_level(2)
+        some_product = {'fodder':10, 'apple':5, 'milk':2}
+        if product in some_product.keys():
+            self._increase_saturation_level(some_product[product])
+        else:
+            return "Ooops! I do not find this product"
 
     def _reduce_saturation_level(self, value):
-        self.value = value
         self.saturation_level -= value
         if self.saturation_level < 0:
             return 0
-        elif self.saturation_level > 100:
-            return 100
+        return self.saturation_level
 
     def _increase_saturation_level(self, value):
-        self.value = value
         self.saturation_level += value
-        if self.saturation_level < 0:
-            return 0
-        elif self.saturation_level > 100:
+        if self.saturation_level > 100:
             return 100
+        return self.saturation_level
 
     def _set_average_speed(self):
         if self.age <= 7:
@@ -115,10 +110,11 @@ class Cheetah(Cat):
     """
 
     def eat(self, product):
-        if product == 'gazelle':
-            super()._increase_saturation_level(30)
-        if product == 'rabbit':
-            super()._increase_saturation_level(15)
+        some_product = {'gazelle':30, 'rabbit':15}                    
+        if product in some_product.keys():                            
+            self._increase_saturation_level(some_product[product])    
+        else:                                                         
+            return "Ooops! I do not find this product"                
 
     def _set_average_speed(self):
         if self.age <= 5:
@@ -154,7 +150,7 @@ class Wall:
     def number_of_rolls_of_wallpaper(self, roll_width_m, roll_length_m):
         count_of_lines_in_roll = math.floor(roll_length_m / self.height)
         count_of_lines = math.floor(self.width / roll_width_m)
-        return math.floor(count_of_lines / count_of_lines_in_roll)
+        return count_of_lines / count_of_lines_in_roll
 
 
 class Roof:
@@ -351,7 +347,7 @@ class House:
         return self.__door.update_wood_price(new_price)
 
     def update_metal_price(self, new_price):
-        return self.__door.update_wood_price(new_price)
+        return self.__door.update_metal_price(new_price)
 
     def get_roof_square(self):
         return self.__roof.roof_square()
