@@ -371,3 +371,4 @@ class House:
 
     def get_room_square(self):
         return self.get_walls_square() - self.get_windows_square() - self.get_door_square()
+    
