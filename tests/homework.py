@@ -64,9 +64,8 @@ class Rectangle:
         :return:
         """
         if self.width != self.height:
-           raise  ValueError("Can't inscribed circle in rectangle with such width and height")
+           raise ValueError("Can't inscribed circle in rectangle with such width and height")
         else:
             radius = self.width / 2
             return radius
-        
-        
+      
