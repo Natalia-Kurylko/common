@@ -23,4 +23,8 @@
     "title": "Battery charger",
     "text": "The charging protocol (how much voltage or current for how long, and what to do when charging is complete, for instance) depends on the size and type of the battery being charged. Some battery types have high tolerance for overcharging (i.e., continued charging after the battery has been fully charged) and can be recharged by connection to a constant voltage source or a constant current source, depending on battery type. Simple chargers of this type must be manually disconnected at the end of the charge cycle, and some battery types absolutely require, or may use a timer, to cut off charging current at some fixed time, approximately when charging is complete. Other battery types cannot withstand over-charging, being damaged (reduced capacity, reduced lifetime), over heating or even exploding. The charger may have temperature or voltage sensing circuits and a microprocessor controller to safely adjust the charging current and voltage, determine the state of charge, and cut off at the end of charge."
   }
+  ,
+  {
+    "title": "Natalia Kurylko",
+    "text": "I did it with little looking) to the previous homework and my notes!" }
 ]
