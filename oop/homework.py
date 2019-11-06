@@ -24,7 +24,7 @@ class Cat:
 
     * Implement method run it receives hours value                                  done
       Calculate run km per hours remember that you have average_speed value
-      Than if your cat run more or eq than 25 _reduce_saturation_level with value 2
+      Than if your cat run less or eq than 25 _reduce_saturation_level with value 2
       if it runs between 25(not including) and 50(including) than _reduce_saturation_level with value 5
       if it runs between 50(not including) and 100(including) than _reduce_saturation_level with value 15
       if it runs between 100(not including) and 200(including) than _reduce_saturation_level with value 25
