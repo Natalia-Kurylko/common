@@ -1,0 +1,14 @@
+
+{% block from %}
+<h1 style="margin-left :35%;">Add product</h1>
+-<form action="" method="post" enctype="multipart/form-data" style="margin-left:25%;border: 30px solid grey;
+ background: #DBD3D3; text-align: center; width: 30%">
+ <p> Name: </p>{{form.name}}
+  <p> Description: </p>{{form.description}}
+  <p> Price: </p>{{form.price}}
+   <p> Choose image: </p>{{form.image}}
+   <p style="margin-top:15px;"><input type="submit" value="Add"></p>
+</form>
+
+{% endblock %}
+
