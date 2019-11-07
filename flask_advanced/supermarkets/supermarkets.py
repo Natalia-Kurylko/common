@@ -16,7 +16,7 @@ def get_all_supermarkets():
             try:
                 for k, v in request.args.items():
                     if k == 'id':
-                        return render_template("all_products.html",
+                        return render_template("all_supermarkets.html",
                                                supermarkets=[i for i in supermarkets_list if i[k] == int(v)])
             except KeyError:
                 return render_template('404.html')
