@@ -25,13 +25,22 @@
 
 {% block main_info%}
 {% for p in products %}
+{% if session[p['name']] %}
+<ul>
+    <li>
+        <a href=""
+           style="color: grey; pointer-events: none;"><h3>{{p['name']}}</h3></a>
+    </li>
+</ul>
+
+{% else %}
 <ul style="list-style-type: square;">
     <li>
         <a href="{{ url_for('products.get_the_product', product_name=p['name'], product_description=p['description'],
         product_price=p['price'], product_img=p['img_name'])}}"><h3>{{p['name']}}</h3></a>
     </li>
 </ul>
-
+{%endif%}
 {% endfor %}
 <h3 style="font-style: italic;">If you need a new product, you must click <a href="{{url_for('products.add_products')}}">here</a>!</h3>
 {% endblock %}
