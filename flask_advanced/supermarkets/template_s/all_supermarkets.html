@@ -22,13 +22,21 @@
 
 {% block all_supermarkets %}
 {% for s in supermarkets %}
+{% if session[s['name']] %}
+<ul>
+    <li>
+        <a href=""
+           style="color: grey; pointer-events: none;"><h3>{{s['name']}}</h3></a>
+    </li>
+</ul>
+{% else %}
 <ul style="list-style-type: square;">
     <li>
         <a href="{{ url_for('supermarkets.get_the_supermarket', supermarket_name=s['name'], supermarket_location=s['location'],
         supermarket_img=s['img_name'])}}"><h3>{{s['name']}}</h3></a>
     </li>
 </ul>
-
+{%endif%}
 {% endfor %}
 <h3 style="font-style: italic;">If you need a new supermarket, you must click <a href="{{url_for('supermarkets.add_supermarket')}}">here</a>!</h3>
 {% endblock %}
