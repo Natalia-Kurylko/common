@@ -58,10 +58,12 @@ class Tenants(Resource):
         return tenants
 
     @marshal_with(tenants_structure)
-    def delete(self):
-        tenants_copy = tenants.copy()
-        tenants_copy = [t for t in tenants_copy if t.passport_id != str(request.args.get('passport_id'))]
-        return tenants_copy
+    def delete(self,value):
+        for t in tenants:
+            if t.passport_id == str(value):
+                tenants.remove(t)
+                return 'delete'
+        return 'no room'
 
 
 api.add_resource(Tenants, '/tenants', '/tenants/<value>')
