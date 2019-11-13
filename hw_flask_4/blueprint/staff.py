@@ -48,10 +48,12 @@ class Staf_f(Resource):
         return staff
 
     @marshal_with(staff_structure)
-    def delete(self):
-        rooms_copy = staff.copy()
-        rooms_copy = [r for r in rooms_copy if r.passport_id != str(request.args.get('passport_id'))]
-        return rooms_copy
+    def delete(self,value):
+        for s in staff:
+            if s.passport_id == str(value):
+                staff.remove(s)
+                return 'delete'
+        return 'no room'
 
 
 api.add_resource(Staf_f, '/staff', '/staff/<value>')
