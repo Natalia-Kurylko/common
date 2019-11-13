@@ -65,10 +65,12 @@ class Rooms(Resource):
         return rooms
 
     @marshal_with(room_structure)
-    def delete(self):
-        rooms_copy = rooms.copy()
-        rooms_copy = [r for r in rooms_copy if r.number != int(request.args.get('number'))]
-        return rooms_copy
+    def delete(self,value):
+        for r in rooms:
+            if r.number == int(value):
+                rooms.remove(r)
+                return 'delete'
+        return 'no room'
 
 
 api.add_resource(Rooms, '/rooms', '/rooms/<value>')
