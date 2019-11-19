@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, TextAreaField, FileField, validators, IntegerField
+from wtforms import Form, StringField, TextAreaField, FileField, validators
 
 
 class AddSupermarketForm(Form):
