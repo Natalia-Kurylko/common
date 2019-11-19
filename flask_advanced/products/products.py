@@ -15,7 +15,7 @@ def get_all_products():
         if request.args:
             try:
                 for k, v in request.args.items():
-                    if k == 'price' or k == 'id':
+                    if k == 'price' or k == 'product_id':
                         return render_template("all_products.html",
                                                products=[i for i in product_list if i[k] == int(v)])
             except KeyError:
@@ -24,11 +24,11 @@ def get_all_products():
         return render_template("all_products.html", products=product_list)
 
 
-@products.route('/products/<int:id>')
-def get_product(id):
+@products.route('/products/<int:product_id>')
+def get_product(product_id):
     try:
         all_data = product_list
-        data = [p for p in all_data if p.get('id') == id]
+        data = [p for p in all_data if p.get('product_id') == product_id]
         session[data[0]['name']] = True
         return render_template('products.html', data=data[0])
     except (IndexError, KeyError):
@@ -46,7 +46,7 @@ def get_the_product(product_name, product_description, product_price, product_im
 def add_products():
     form = AddProductForm()
     if request.method == 'POST':
-        data = {"id": str(uuid.uuid4()), "name": request.form['name'], "description": request.form['description'],
+        data = {"product_id": str(uuid.uuid4()), "name": request.form['name'], "description": request.form['description'],
                 "img_name": secure_filename(request.files['image'].filename), "price": request.form['price']}
         product_list.append(data)
         file = request.files['image']
