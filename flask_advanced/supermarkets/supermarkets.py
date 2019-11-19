@@ -15,7 +15,7 @@ def get_all_supermarkets():
         if request.args:
             try:
                 for k, v in request.args.items():
-                    if k == 'id':
+                    if k == 'supermarket_id':
                         return render_template("all_supermarkets.html",
                                                supermarkets=[i for i in supermarkets_list if i[k] == int(v)])
             except KeyError:
@@ -24,11 +24,11 @@ def get_all_supermarkets():
         return render_template("all_supermarkets.html", supermarkets=supermarkets_list)
 
 
-@supermarkets.route('/supermarket/<int:id>')
-def get_supermarket(id):
+@supermarkets.route('/supermarket/<int:supermarket_id>')
+def get_supermarket(supermarket_id):
     try:
         all_data = supermarkets_list
-        data = [s for s in all_data if s.get('id') == id]
+        data = [s for s in all_data if s.get('supermarket_id') == supermarket_id]
         session[data[0]['name']] = True
         return render_template('supermarkets.html', data=data[0])
     except (IndexError,KeyError):
@@ -46,7 +46,7 @@ def get_the_supermarket(supermarket_name, supermarket_location, supermarket_img)
 def add_supermarket():
     form = AddSupermarketForm()
     if request.method == 'POST':
-        data = {"id": str(uuid.uuid4()), "name": request.form['name'], "location": request.form['location'],
+        data = {"supermarket_id": str(uuid.uuid4()), "name": request.form['name'], "location": request.form['location'],
                 "img_name": secure_filename(request.files['image'].filename)}
         supermarkets_list.append(data)
         file = request.files['image']
